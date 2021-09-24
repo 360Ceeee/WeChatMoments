@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="image_item_height">278dp</dimen>
+    <dimen name="button_add_margin">16dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="toolbar_elevation">8dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="userImg">60dp</dimen>
+</resources>
