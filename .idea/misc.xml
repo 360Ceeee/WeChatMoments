@@ -6,8 +6,13 @@
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/baseline_camera_enhance_black_18dp.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/baseline_camera_enhance_white_24dp.xml" value="0.36974358974358973" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/baseline_sensors_off_white_18dp.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/comment_drawable_white.xml" value="0.3640625" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/comments_drawable_blue.xml" value="0.35846153846153844" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/heart_drawable_white.xml" value="0.3640625" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/selector_praise_or_comment_left_bg.xml" value="0.3640625" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/selector_praise_or_comment_right_bg.xml" value="0.3640625" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/selector_view_content_state.xml" value="0.35846153846153844" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/shape_praise_or_comment.xml" value="0.3640625" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/drawable/toast_shape_bg.xml" value="0.36974358974358973" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/background.xml" value="0.19010416666666666" />
@@ -16,9 +21,14 @@
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/include_item_recycler_location.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/include_item_recycler_praise_and_comment.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/include_item_recycler_time.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/item_title_layout.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/item_toolbar_view.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/item_top_view_layout.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/item_user_content.xml" value="0.359375" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/item_wechat_moment_only_word.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/item_wechat_moment_word_and_images.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/list_user_content.xml" value="0.359375" />
+        <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/popup_window_praise_or_comment_view.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/temp.xml" value="0.359375" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/temp1.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/80352286/AndroidStudioProjects/WeChatMoments/app/src/main/res/layout/temptest.xml" value="0.359375" />

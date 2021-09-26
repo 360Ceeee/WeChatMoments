@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

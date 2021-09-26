@@ -9,4 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#59525a</color>
     <color name="red">#f80606</color>
+    <color name="base_DCDCDC">#DCDCDC</color>
+    <color name="base_FFFFFF">#FFFFFF</color>
+    <color name="base_F2F2F2">#F2F2F2</color>
+    <color name="base_222230">#222230</color>
+    <color name="base_000000">#000000</color>
+    <color name="base_FAFAFA">#FAFAFA</color>
 </resources>
