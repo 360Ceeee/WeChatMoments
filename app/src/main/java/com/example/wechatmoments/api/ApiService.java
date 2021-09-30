@@ -1,7 +1,7 @@
 package com.example.wechatmoments.api;
 
-import com.example.wechatmoments.data.bean.MomentListBean;
-import com.example.wechatmoments.data.bean.UserInfoBean;
+import com.example.wechatmoments.data.bean.MomentList;
+import com.example.wechatmoments.data.bean.UserInfo;
 
 
 import java.util.List;
@@ -16,14 +16,14 @@ public interface ApiService {
      * @return
      */
     @GET("user/jsmith")
-    Observable<UserInfoBean> getUserInfo();
+    Observable<UserInfo> getUserInfo();
 
     /**
      * 请求列表
      * @return
      */
     @GET("user/jsmith/tweets")
-    Observable<List<MomentListBean>> getMomentList();
+    Observable<List<MomentList>> getMomentList();
 
 
 }

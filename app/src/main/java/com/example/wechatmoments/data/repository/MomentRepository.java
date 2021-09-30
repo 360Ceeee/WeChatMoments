@@ -1,7 +1,7 @@
 package com.example.wechatmoments.data.repository;
 
-import com.example.wechatmoments.data.bean.MomentListBean;
-import com.example.wechatmoments.data.bean.UserInfoBean;
+import com.example.wechatmoments.data.bean.MomentList;
+import com.example.wechatmoments.data.bean.UserInfo;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ public class MomentRepository extends VoidRepository{
 
     }
 
-    public Observable<List<MomentListBean>> getMomentList() {
+    public Observable<List<MomentList>> getMomentList() {
         return apiService.getMomentList();
     }
 
-    public Observable<UserInfoBean> getUserInfo() {
+    public Observable<UserInfo> getUserInfo() {
         return apiService.getUserInfo();
     }
 }

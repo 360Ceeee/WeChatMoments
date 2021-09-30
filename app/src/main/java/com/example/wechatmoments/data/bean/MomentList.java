@@ -19,15 +19,15 @@ import java.util.List;
  *   },
  */
 
-public class MomentListBean extends BaseResVo{
+public class MomentList extends BaseResVo{
     private String content;
-    private SenderBean sender;
+    private Sender sender;
     @SerializedName(value = "error", alternate = "unknown error")
     private String error;
-    private List<ImagesBean> images;
-    private List<CommentsBean> comments;
+    private List<Images> images;
+    private List<Comments> comments;
 
-    protected MomentListBean(Parcel in) {
+    protected MomentList(Parcel in) {
         super(in);
     }
 
@@ -39,16 +39,16 @@ public class MomentListBean extends BaseResVo{
         this.content = content;
     }
 
-    public SenderBean getSender() {
+    public Sender getSender() {
         if (sender != null) {
             return sender;
         } else {
             setContent("error = " + getError());
-            return new SenderBean();
+            return new Sender();
         }
     }
 
-    public void setSender(SenderBean sender) {
+    public void setSender(Sender sender) {
         this.sender = sender;
     }
 
@@ -61,19 +61,19 @@ public class MomentListBean extends BaseResVo{
     }
 
 
-    public List<ImagesBean> getImages() {
+    public List<Images> getImages() {
         return images;
     }
 
-    public void setImages(List<ImagesBean> images) {
+    public void setImages(List<Images> images) {
         this.images = images;
     }
 
-    public List<CommentsBean> getComments() {
+    public List<Comments> getComments() {
         return comments;
     }
 
-    public void setComments(List<CommentsBean> comments) {
+    public void setComments(List<Comments> comments) {
         this.comments = comments;
     }
 }

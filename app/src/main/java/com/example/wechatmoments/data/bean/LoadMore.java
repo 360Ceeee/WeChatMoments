@@ -1,6 +1,6 @@
 package com.example.wechatmoments.data.bean;
 
-public class LoadMoreBean {
+public class LoadMore {
     private boolean isLoadMoreSuccess;
     private boolean hasMoreData;
 
@@ -8,7 +8,7 @@ public class LoadMoreBean {
         return isLoadMoreSuccess;
     }
 
-    public void setLoadMoreSuccess(Boolean loadMoreSuccess) {
+    public void setLoadMoreSuccess(boolean loadMoreSuccess) {
         isLoadMoreSuccess = loadMoreSuccess;
     }
 
@@ -16,7 +16,7 @@ public class LoadMoreBean {
         return hasMoreData;
     }
 
-    public void setHasMoreData(Boolean hasMoreData) {
+    public void setHasMoreData(boolean hasMoreData) {
         this.hasMoreData = hasMoreData;
     }
 }

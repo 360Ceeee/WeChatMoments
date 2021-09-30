@@ -11,9 +11,9 @@ package com.example.wechatmoments.data.bean;
  *         }
  *       }
  */
-public class CommentsBean {
+public class Comments {
     private String content;
-    private SenderBean sender;
+    private Sender sender;
 
     public String getContent() {
         return content;
@@ -23,11 +23,11 @@ public class CommentsBean {
         this.content = content;
     }
 
-    public SenderBean getSender() {
+    public Sender getSender() {
         return sender;
     }
 
-    public void setSender(SenderBean sender) {
+    public void setSender(Sender sender) {
         this.sender = sender;
     }
 }

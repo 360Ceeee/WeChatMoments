@@ -1,16 +1,11 @@
-package com.example.wechatmoments.view;
+package com.example.wechatmoments.view.widget;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-/**
- * Desc StatusView 状态栏view
- *
- * @author zhangxiaolin
- * Date 2020/9/16
- */
+
 
 public class StatusView extends View {
 

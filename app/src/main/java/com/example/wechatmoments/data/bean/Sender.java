@@ -10,7 +10,7 @@ import android.text.TextUtils;
  *     }
  */
 
-public class SenderBean {
+public class Sender {
 
     private String username;
     private String nick;

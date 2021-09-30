@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
  *   "username": "jsmith"
  *
  */
-public class UserInfoBean extends BaseResVo{
+public class UserInfo extends BaseResVo{
 
     @SerializedName("profile-image")
     private String profileimage;
@@ -20,7 +20,7 @@ public class UserInfoBean extends BaseResVo{
     private String nick;
     private String username;
 
-    protected UserInfoBean(Parcel in) {
+    protected UserInfo(Parcel in) {
         super(in);
     }
 
