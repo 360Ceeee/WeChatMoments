@@ -35,6 +35,8 @@ dependencies {
 
 //    implementation 'com.github.iielse:imageviewer:x.y.z'
 
+    //immersionBar
+    implementation "com.gyf.immersionbar:immersionbar:3.0.0"
     //okHttp
     implementation "com.squareup.okhttp:okhttp:2.7.5"
     implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
