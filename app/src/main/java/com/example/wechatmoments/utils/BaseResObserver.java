@@ -10,18 +10,18 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BaseResObserver<T> implements Observer<T> {
 
-    private Lifecycle mlifecycle;
+    private Lifecycle mLifeCycle;
 
     public BaseResObserver() {
     }
 
     public BaseResObserver(Lifecycle lifecycle) {
-        mlifecycle = lifecycle;
+        mLifeCycle = lifecycle;
     }
 
     public BaseResObserver(Context context) {
         if (context instanceof LifecycleOwner) {
-            mlifecycle = ((LifecycleOwner) context).getLifecycle();
+            mLifeCycle = ((LifecycleOwner) context).getLifecycle();
         }
     }
 
@@ -31,8 +31,8 @@ public abstract class BaseResObserver<T> implements Observer<T> {
     }
 
     private boolean shouldPostResult() {
-        if (mlifecycle != null) {
-            return !mlifecycle.getCurrentState().isAtLeast(Lifecycle.State.CREATED);
+        if (mLifeCycle != null) {
+            return !mLifeCycle.getCurrentState().isAtLeast(Lifecycle.State.CREATED);
         }
         return false;
     }

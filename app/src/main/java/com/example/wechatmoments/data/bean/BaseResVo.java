@@ -5,14 +5,12 @@ import android.os.Parcelable;
 
 public class BaseResVo implements Parcelable {
 
-    protected BaseResVo(Parcel in) {
-    }
 
     public static final Creator<BaseResVo> CREATOR = new Creator<BaseResVo>() {
 
         @Override
         public BaseResVo createFromParcel(Parcel in) {
-            return new BaseResVo(in);
+            return new BaseResVo();
         }
 
         @Override

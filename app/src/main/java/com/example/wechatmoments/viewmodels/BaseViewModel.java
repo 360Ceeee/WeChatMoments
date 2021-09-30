@@ -21,7 +21,7 @@ public class BaseViewModel<T extends AbstractRepository> extends AndroidViewMode
     protected void onCleared() {
         super.onCleared();
         if (mRepository != null) {
-            mRepository.unDisposable();
+            mRepository.removeDisposable();
         }
     }
 }

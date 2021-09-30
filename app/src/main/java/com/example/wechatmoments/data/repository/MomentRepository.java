@@ -9,10 +9,6 @@ import io.reactivex.Observable;
 
 public class MomentRepository extends VoidRepository{
 
-    public MomentRepository() {
-
-    }
-
     public Observable<List<MomentList>> getMomentList() {
         return apiService.getMomentList();
     }

@@ -1,7 +1,6 @@
-package com.example.wechatmoments.utils;
+package com.example.wechatmoments.data.bean;
 
 import com.example.wechatmoments.constant.Constant;
-import com.example.wechatmoments.data.bean.MomentList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 public class MemoryMomentStore {
 
     public static int totalPage = Constant.ONE;
-    private List<MomentList> mList = new ArrayList<>();
+    private final List<MomentList> mList = new ArrayList<>();
 
     private static MemoryMomentStore instance;
 

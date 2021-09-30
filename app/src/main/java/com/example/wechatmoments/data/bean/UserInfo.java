@@ -15,44 +15,44 @@ import com.google.gson.annotations.SerializedName;
 public class UserInfo extends BaseResVo{
 
     @SerializedName("profile-image")
-    private String profileimage;
-    private String avatar;
-    private String nick;
-    private String username;
+    private String mProfileImage;
+    private String mAvatar;
+    private String mNick;
+    private String mUsername;
 
     protected UserInfo(Parcel in) {
-        super(in);
+        super();
     }
 
-    public String getProfileimage() {
-        return profileimage;
+    public String getProfileImage() {
+        return mProfileImage;
     }
 
-    public void setProfileimage(String profileimage) {
-        this.profileimage = profileimage;
+    public void setProfileImage(String ProfileImage) {
+        mProfileImage = ProfileImage;
     }
 
     public String getAvatar() {
-        return avatar;
+        return mAvatar;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatar(String Avatar) {
+        mAvatar = Avatar;
     }
 
     public String getNick() {
-        return nick;
+        return mNick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setNick(String Nick) {
+        mNick = Nick;
     }
 
     public String getUsername() {
-        return username;
+        return mUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String Username) {
+        mUsername = Username;
     }
 }

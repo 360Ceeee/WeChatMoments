@@ -7,10 +7,6 @@ public abstract class AbstractRepository {
 
     private CompositeDisposable mCompositeDisposable;
 
-    public AbstractRepository() {
-
-    }
-
     protected void addDisposable(Disposable disposable) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
@@ -18,7 +14,7 @@ public abstract class AbstractRepository {
         mCompositeDisposable.add(disposable);
     }
 
-    public void unDisposable() {
+    public void removeDisposable() {
         if (mCompositeDisposable != null && mCompositeDisposable.isDisposed()) {
             mCompositeDisposable.clear();
         }

@@ -1,6 +1,5 @@
 package com.example.wechatmoments.utils.http;
 
-import com.example.wechatmoments.utils.Logger;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class HttpLogger implements HttpLoggingInterceptor.Logger {

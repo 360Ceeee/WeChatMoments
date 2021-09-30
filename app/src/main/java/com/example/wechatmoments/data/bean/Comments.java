@@ -12,22 +12,22 @@ package com.example.wechatmoments.data.bean;
  *       }
  */
 public class Comments {
-    private String content;
-    private Sender sender;
+    private String mContent;
+    private Sender mSender;
 
     public String getContent() {
-        return content;
+        return mContent;
     }
 
     public void setContent(String content) {
-        this.content = content;
+        mContent = content;
     }
 
     public Sender getSender() {
-        return sender;
+        return mSender;
     }
 
     public void setSender(Sender sender) {
-        this.sender = sender;
+        mSender = sender;
     }
 }

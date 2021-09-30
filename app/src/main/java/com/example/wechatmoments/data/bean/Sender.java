@@ -12,47 +12,47 @@ import android.text.TextUtils;
 
 public class Sender {
 
-    private String username;
-    private String nick;
-    private String avatar;
+    private String mUsername;
+    private String mNick;
+    private String mAvatar;
 
-    private boolean hasReply;
+    private boolean mHasReply;
 
     public String getUsername() {
-        if (!TextUtils.isEmpty(username)) {
-            return username;
+        if (!TextUtils.isEmpty(mUsername)) {
+            return mUsername;
         }
         return "errorUserName";
     }
 
     public boolean isHasReply() {
-        return hasReply;
+        return mHasReply;
     }
 
-    public void setHasReply(boolean hasReply) {
-        this.hasReply = hasReply;
+    public void setHasReply(boolean mHasReply) {
+        this.mHasReply = mHasReply;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String mUsername) {
+        this.mUsername = mUsername;
     }
 
     public String getNick() {
-        if (!TextUtils.isEmpty(nick)) {
-            return nick;
+        if (!TextUtils.isEmpty(mNick)) {
+            return mNick;
         }
         return "默认昵称";
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setNick(String mNick) {
+        this.mNick = mNick;
     }
 
     public String getAvatar() {
-        return avatar;
+        return mAvatar;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatar(String mAvatar) {
+        this.mAvatar = mAvatar;
     }
 }

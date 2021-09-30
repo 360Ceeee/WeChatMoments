@@ -20,36 +20,36 @@ import java.util.List;
  */
 
 public class MomentList extends BaseResVo{
-    private String content;
-    private Sender sender;
+    private String mContent;
+    private Sender mSender;
     @SerializedName(value = "error", alternate = "unknown error")
     private String error;
-    private List<Images> images;
-    private List<Comments> comments;
+    private List<Images> mImages;
+    private List<Comments> mComments;
 
     protected MomentList(Parcel in) {
-        super(in);
+        super();
     }
 
     public String getContent() {
-        return content;
+        return mContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContent(String mContent) {
+        this.mContent = mContent;
     }
 
     public Sender getSender() {
-        if (sender != null) {
-            return sender;
+        if (mSender != null) {
+            return mSender;
         } else {
             setContent("error = " + getError());
             return new Sender();
         }
     }
 
-    public void setSender(Sender sender) {
-        this.sender = sender;
+    public void setSender(Sender mSender) {
+        this.mSender = mSender;
     }
 
     public String getError() {
@@ -62,18 +62,18 @@ public class MomentList extends BaseResVo{
 
 
     public List<Images> getImages() {
-        return images;
+        return mImages;
     }
 
-    public void setImages(List<Images> images) {
-        this.images = images;
+    public void setImages(List<Images> mImages) {
+        this.mImages = mImages;
     }
 
     public List<Comments> getComments() {
-        return comments;
+        return mComments;
     }
 
-    public void setComments(List<Comments> comments) {
-        this.comments = comments;
+    public void setComments(List<Comments> mComments) {
+        this.mComments = mComments;
     }
 }

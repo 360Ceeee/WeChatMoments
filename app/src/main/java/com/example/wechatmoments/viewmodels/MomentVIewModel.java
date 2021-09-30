@@ -13,7 +13,7 @@ import com.example.wechatmoments.data.bean.MomentList;
 import com.example.wechatmoments.data.bean.UserInfo;
 import com.example.wechatmoments.data.repository.MomentRepository;
 import com.example.wechatmoments.utils.BaseResObserver;
-import com.example.wechatmoments.utils.MemoryMomentStore;
+import com.example.wechatmoments.data.bean.MemoryMomentStore;
 
 import java.util.List;
 
