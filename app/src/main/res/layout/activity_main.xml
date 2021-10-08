@@ -29,7 +29,7 @@
                     app:toolbarId="@+id/toolbar">
 
                     <!-- 可伸缩背景图布局文件 -->
-                    <include layout="@layout/item_top_view_layout"/>
+                    <include layout="@layout/top_view_layout"/>
 
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -37,7 +37,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycle_view_list"
+                android:id="@+id/rv_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />

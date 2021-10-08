@@ -13,6 +13,10 @@ public class ImageInfo implements Parcelable {
     public int mImageViewX;
     public int mImageViewY;
 
+    public ImageInfo(){
+
+    }
+
     protected ImageInfo(Parcel in) {
         mThumbnailUrl = in.readString();
         mBigImageUrl = in.readString();

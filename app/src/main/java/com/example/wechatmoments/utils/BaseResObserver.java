@@ -12,9 +12,6 @@ public abstract class BaseResObserver<T> implements Observer<T> {
 
     private Lifecycle mLifeCycle;
 
-    public BaseResObserver() {
-    }
-
     public BaseResObserver(Lifecycle lifecycle) {
         mLifeCycle = lifecycle;
     }

@@ -20,7 +20,7 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MomentVIewModel extends BaseViewModel<MomentRepository> implements LifecycleObserver {
+public class MomentViewModel extends BaseViewModel<MomentRepository> implements LifecycleObserver {
 
     private MutableLiveData<UserInfo> userInfoData;
 
@@ -31,7 +31,7 @@ public class MomentVIewModel extends BaseViewModel<MomentRepository> implements 
     private int page = Constant.ONE;
 
 
-    public MomentVIewModel(@NonNull Application application) {
+    public MomentViewModel(@NonNull Application application) {
         super(application);
         userInfoData = new MutableLiveData<>();
         momentList = new MutableLiveData<>();
@@ -114,7 +114,7 @@ public class MomentVIewModel extends BaseViewModel<MomentRepository> implements 
         getUserInfo(context);
     }
 
-    public void LoadMoreData() {
+    public void loadMoreData() {
         if (page < MemoryMomentStore.totalPage) {
             page++;
             momentList.setValue(MemoryMomentStore.getInstance().getPartMomentList(page));
