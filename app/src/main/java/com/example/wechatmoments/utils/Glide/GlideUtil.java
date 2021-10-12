@@ -1,4 +1,4 @@
-package com.example.wechatmoments.utils;
+package com.example.wechatmoments.utils.Glide;
 
 import android.content.Context;
 import android.widget.ImageView;

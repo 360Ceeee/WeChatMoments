@@ -14,34 +14,19 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.wechatmoments.utils.statusbar.StatusBarUtil;
+import com.example.wechatmoments.view.activity.MomentActivity;
+
 public class MainActivity extends AppCompatActivity {
 
-
-    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar(findViewById(R.id.toolbar));
-
-
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add:
-                Toast.makeText(this, "上传", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-        }
-        return true;
+        StatusBarUtil.setImmersiveStatusBar(this, false);
+        StatusBarUtil.hideNavigationBar(this);
+        MomentActivity.navigateToMomentActivity(this);
     }
 
 

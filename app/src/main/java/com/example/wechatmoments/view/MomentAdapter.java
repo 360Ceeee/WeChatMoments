@@ -20,7 +20,7 @@ import com.example.wechatmoments.data.bean.Images;
 import com.example.wechatmoments.data.bean.MomentList;
 import com.example.wechatmoments.R;
 import com.example.wechatmoments.data.bean.Sender;
-import com.example.wechatmoments.utils.GlideUtil;
+import com.example.wechatmoments.utils.Glide.GlideUtil;
 import com.example.wechatmoments.view.activity.CustomBitmapActivity;
 import com.example.wechatmoments.view.widget.ToastView;
 import com.example.wechatmoments.view.widget.comment.CommentsView;
