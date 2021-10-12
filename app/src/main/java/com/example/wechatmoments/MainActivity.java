@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StatusBarUtil.setImmersiveStatusBar(this, false);
-        StatusBarUtil.hideNavigationBar(this);
-        MomentActivity.navigateToMomentActivity(this);
+//        StatusBarUtil.setImmersiveStatusBar(this, false);
+//        StatusBarUtil.hideNavigationBar(this);
+//        MomentActivity.navigateToMomentActivity(this);
     }
 
 

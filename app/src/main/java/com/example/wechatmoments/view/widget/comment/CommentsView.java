@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.example.wechatmoments.data.bean.Comments;
-import com.example.wechatmoments.data.bean.Sender;
+import com.example.wechatmoments.data.model.Comments;
+import com.example.wechatmoments.data.model.Sender;
 import com.example.wechatmoments.view.widget.ToastView;
 
 import java.util.List;

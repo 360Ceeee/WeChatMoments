@@ -14,12 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wechatmoments.constant.LoadingState;
-import com.example.wechatmoments.data.bean.Comments;
-import com.example.wechatmoments.data.bean.ImageInfo;
-import com.example.wechatmoments.data.bean.Images;
-import com.example.wechatmoments.data.bean.MomentList;
+import com.example.wechatmoments.data.model.Comments;
+import com.example.wechatmoments.data.model.ImageInfo;
+import com.example.wechatmoments.data.model.Images;
+import com.example.wechatmoments.data.model.MomentList;
 import com.example.wechatmoments.R;
-import com.example.wechatmoments.data.bean.Sender;
+import com.example.wechatmoments.data.model.Sender;
 import com.example.wechatmoments.utils.Glide.GlideUtil;
 import com.example.wechatmoments.view.activity.CustomBitmapActivity;
 import com.example.wechatmoments.view.widget.ToastView;
@@ -105,7 +105,7 @@ public class MomentAdapter extends RecyclerView.Adapter {
         Sender sender = momentList.getSender();
         String avatar = sender.getAvatar();
         //sender在数据结构中已经判空
-        GlideUtil.loadRoundedCorner(mContext, avatar, holder.ivHead, R.drawable.userimage);
+        GlideUtil.loadRoundedCorner(mContext, avatar, holder.ivHead, R.mipmap.icon_default_small_head);
         holder.ivHead.setOnClickListener(view -> {
             if (!TextUtils.isEmpty(avatar)) {
                 CustomBitmapActivity.navigateToCustomBitmapActivity(mContext, avatar, true);

@@ -1,7 +1,7 @@
 package com.example.wechatmoments.api;
 
-import com.example.wechatmoments.data.bean.MomentList;
-import com.example.wechatmoments.data.bean.UserInfo;
+import com.example.wechatmoments.data.model.MomentList;
+import com.example.wechatmoments.data.model.UserInfo;
 
 
 import java.util.List;

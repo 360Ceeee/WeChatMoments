@@ -1,9 +1,8 @@
 package com.example.wechatmoments.view.widget.nineimg;
 
 import android.content.Context;
-import android.graphics.ImageDecoder;
 
-import com.example.wechatmoments.data.bean.ImageInfo;
+import com.example.wechatmoments.data.model.ImageInfo;
 
 import java.util.List;
 

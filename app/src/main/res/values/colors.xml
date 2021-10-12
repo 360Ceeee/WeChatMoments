@@ -23,4 +23,5 @@
     <color name="home_status_bar_color">#7B7B97</color>
     <color name="Base_F0F0F0">#F0F0F0</color>
     <color name="color_ff387dcc">#ff387dcc</color>
+    <color name="text_blue_color">#007AFF</color>
 </resources>

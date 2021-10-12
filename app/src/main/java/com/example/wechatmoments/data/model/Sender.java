@@ -1,4 +1,4 @@
-package com.example.wechatmoments.data.bean;
+package com.example.wechatmoments.data.model;
 
 import android.text.TextUtils;
 
@@ -12,47 +12,47 @@ import android.text.TextUtils;
 
 public class Sender {
 
-    private String mUsername;
-    private String mNick;
-    private String mAvatar;
+    private String username;
+    private String nick;
+    private String avatar;
 
-    private boolean mHasReply;
+    private boolean hasReply;
 
     public String getUsername() {
-        if (!TextUtils.isEmpty(mUsername)) {
-            return mUsername;
+        if (!TextUtils.isEmpty(username)) {
+            return username;
         }
         return "errorUserName";
     }
 
     public boolean isHasReply() {
-        return mHasReply;
+        return hasReply;
     }
 
     public void setHasReply(boolean mHasReply) {
-        this.mHasReply = mHasReply;
+        this.hasReply = mHasReply;
     }
 
     public void setUsername(String mUsername) {
-        this.mUsername = mUsername;
+        this.username = mUsername;
     }
 
     public String getNick() {
-        if (!TextUtils.isEmpty(mNick)) {
-            return mNick;
+        if (!TextUtils.isEmpty(nick)) {
+            return nick;
         }
         return "默认昵称";
     }
 
     public void setNick(String mNick) {
-        this.mNick = mNick;
+        this.nick = mNick;
     }
 
     public String getAvatar() {
-        return mAvatar;
+        return avatar;
     }
 
     public void setAvatar(String mAvatar) {
-        this.mAvatar = mAvatar;
+        this.avatar = mAvatar;
     }
 }

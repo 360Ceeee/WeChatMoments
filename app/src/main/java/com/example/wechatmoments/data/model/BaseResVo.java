@@ -1,4 +1,4 @@
-package com.example.wechatmoments.data.bean;
+package com.example.wechatmoments.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

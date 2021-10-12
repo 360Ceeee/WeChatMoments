@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.wechatmoments.R;
-import com.example.wechatmoments.data.bean.ImageInfo;
+import com.example.wechatmoments.data.model.ImageInfo;
 
 
 import java.util.ArrayList;

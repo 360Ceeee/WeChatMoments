@@ -8,12 +8,12 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.wechatmoments.constant.Constant;
-import com.example.wechatmoments.data.bean.LoadMore;
-import com.example.wechatmoments.data.bean.MomentList;
-import com.example.wechatmoments.data.bean.UserInfo;
+import com.example.wechatmoments.data.model.LoadMore;
+import com.example.wechatmoments.data.model.MomentList;
+import com.example.wechatmoments.data.model.UserInfo;
 import com.example.wechatmoments.data.repository.MomentRepository;
 import com.example.wechatmoments.utils.BaseResObserver;
-import com.example.wechatmoments.data.bean.MemoryMomentStore;
+import com.example.wechatmoments.data.model.MemoryMomentStore;
 
 import java.util.List;
 

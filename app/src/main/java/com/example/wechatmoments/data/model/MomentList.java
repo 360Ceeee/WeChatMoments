@@ -1,4 +1,4 @@
-package com.example.wechatmoments.data.bean;
+package com.example.wechatmoments.data.model;
 
 import android.os.Parcel;
 
@@ -20,36 +20,36 @@ import java.util.List;
  */
 
 public class MomentList extends BaseResVo{
-    private String mContent;
-    private Sender mSender;
+    private String content;
+    private Sender sender;
     @SerializedName(value = "error", alternate = "unknown error")
     private String error;
-    private List<Images> mImages;
-    private List<Comments> mComments;
+    private List<Images> images;
+    private List<Comments> comments;
 
     protected MomentList(Parcel in) {
         super();
     }
 
     public String getContent() {
-        return mContent;
+        return content;
     }
 
-    public void setContent(String mContent) {
-        this.mContent = mContent;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Sender getSender() {
-        if (mSender != null) {
-            return mSender;
+        if (sender != null) {
+            return sender;
         } else {
             setContent("error = " + getError());
             return new Sender();
         }
     }
 
-    public void setSender(Sender mSender) {
-        this.mSender = mSender;
+    public void setSender(Sender sender) {
+        this.sender = sender;
     }
 
     public String getError() {
@@ -62,18 +62,18 @@ public class MomentList extends BaseResVo{
 
 
     public List<Images> getImages() {
-        return mImages;
+        return images;
     }
 
-    public void setImages(List<Images> mImages) {
-        this.mImages = mImages;
+    public void setImages(List<Images> images) {
+        this.images = images;
     }
 
     public List<Comments> getComments() {
-        return mComments;
+        return comments;
     }
 
-    public void setComments(List<Comments> mComments) {
-        this.mComments = mComments;
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 }

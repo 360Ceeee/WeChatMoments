@@ -3,7 +3,7 @@ package com.example.wechatmoments.view.widget.nineimg;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.example.wechatmoments.data.bean.ImageInfo;
+import com.example.wechatmoments.data.model.ImageInfo;
 import com.example.wechatmoments.R;
 
 import java.io.Serializable;

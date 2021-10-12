@@ -11,7 +11,7 @@ public class GlideImageLoader implements NineGridView.ImageLoader{
 
     @Override
     public void onDisplayImage(Context context, ImageView imageView, String url){
-        GlideUtil.load(context, url, imageView, R.drawable.background);
+        GlideUtil.load(context, url, imageView, R.mipmap.default_place_img);
     }
 
     @Override

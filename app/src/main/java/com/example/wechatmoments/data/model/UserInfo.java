@@ -1,4 +1,4 @@
-package com.example.wechatmoments.data.bean;
+package com.example.wechatmoments.data.model;
 
 import android.os.Parcel;
 
@@ -15,44 +15,44 @@ import com.google.gson.annotations.SerializedName;
 public class UserInfo extends BaseResVo{
 
     @SerializedName("profile-image")
-    private String mProfileImage;
-    private String mAvatar;
-    private String mNick;
-    private String mUsername;
+    private String profileimage;
+    private String avatar;
+    private String nick;
+    private String username;
 
     protected UserInfo(Parcel in) {
         super();
     }
 
     public String getProfileImage() {
-        return mProfileImage;
+        return profileimage;
     }
 
     public void setProfileImage(String ProfileImage) {
-        mProfileImage = ProfileImage;
+        profileimage = ProfileImage;
     }
 
     public String getAvatar() {
-        return mAvatar;
+        return avatar;
     }
 
     public void setAvatar(String Avatar) {
-        mAvatar = Avatar;
+        avatar = Avatar;
     }
 
     public String getNick() {
-        return mNick;
+        return nick;
     }
 
     public void setNick(String Nick) {
-        mNick = Nick;
+        nick = Nick;
     }
 
     public String getUsername() {
-        return mUsername;
+        return username;
     }
 
     public void setUsername(String Username) {
-        mUsername = Username;
+        username = Username;
     }
 }

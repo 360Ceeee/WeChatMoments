@@ -1,4 +1,4 @@
-package com.example.wechatmoments.data.bean;
+package com.example.wechatmoments.data.model;
 
 public class LoadMore {
     private boolean mIsLoadMoreSuccess;

@@ -1,4 +1,4 @@
-package com.example.wechatmoments.data.bean;
+package com.example.wechatmoments.data.model;
 
 /**
  * "comments": [
@@ -12,22 +12,22 @@ package com.example.wechatmoments.data.bean;
  *       }
  */
 public class Comments {
-    private String mContent;
-    private Sender mSender;
+    private String content;
+    private Sender sender;
 
     public String getContent() {
-        return mContent;
+        return content;
     }
 
     public void setContent(String content) {
-        mContent = content;
+        this.content = content;
     }
 
     public Sender getSender() {
-        return mSender;
+        return sender;
     }
 
     public void setSender(Sender sender) {
-        mSender = sender;
+        this.sender = sender;
     }
 }
