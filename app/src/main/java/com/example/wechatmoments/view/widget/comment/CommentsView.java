@@ -21,9 +21,9 @@ import java.util.List;
 
 public class CommentsView extends LinearLayout {
 
-    private final Context mContext;
-    private List<Comments> mData;
-    private onItemClickListener mListener;
+    private final Context context;
+    private List<Comments> data;
+    private onItemClickListener listener;
 
     public CommentsView(Context context) {
         this(context, null);
@@ -35,39 +35,37 @@ public class CommentsView extends LinearLayout {
     public CommentsView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOrientation(VERTICAL);
-        mContext = context;
+        this.context = context;
     }
 
     public void setList(List<Comments> list) {
-        mData = list;
+        data = list;
     }
 
     public void setOnItemClickListener(onItemClickListener listener) {
-        mListener = listener;
+        this.listener = listener;
     }
 
     public void notifyDataSetChanged() {
         removeAllViews();
-        if (mData == null || mData.size() <= 0) {
+        if (data == null || data.size() <= 0) {
             return;
         }
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(0, 10, 0, 10);
-        for (int i = 0; i < mData.size(); i++) {
+        for (int i = 0; i < data.size(); i++) {
             View view = getView(i);
-            if (view != null) {
-                addView(view, i, layoutParams);
-            }
+            addView(view, i, layoutParams);
         }
     }
 
     private View getView(final int position) {
-        final Comments item = mData.get(position);
+        final Comments item = data.get(position);
         Sender replyUser = item.getSender();
         // 是否有回复
         boolean hasReply = replyUser.isHasReply();
 
-        TextView textView = new TextView(mContext);
+        TextView textView = new TextView(context);
         textView.setTextSize(15);
         textView.setTextColor(0xff686868);
 
@@ -89,11 +87,11 @@ public class CommentsView extends LinearLayout {
         textView.setHighlightColor(getResources().getColor(android.R.color.transparent));
 //        textView.setHighlightColor(0xff000000);
 
-        textView.setMovementMethod(new CircleMovement(0xffcccccc, 0xffcccccc));
+        textView.setMovementMethod(new CircleMovementMethod(0xffcccccc, 0xffcccccc));
 
         textView.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onItemClick(position, item);
+            if (listener != null) {
+                listener.onItemClick(position, item);
             }
         });
 

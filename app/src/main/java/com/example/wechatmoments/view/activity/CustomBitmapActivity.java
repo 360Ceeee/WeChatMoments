@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.wechatmoments.utils.AbstractLifeCycleActivity;
-import com.example.wechatmoments.utils.Glide.GlideUtil;
 import com.example.wechatmoments.utils.statusbar.StatusBarUtil;
 import com.example.wechatmoments.viewmodels.VoidViewModel;
 import com.gyf.immersionbar.ImmersionBar;
@@ -20,9 +21,9 @@ public class CustomBitmapActivity extends AbstractLifeCycleActivity<VoidViewMode
     private static final String URL = "url";
     private static final String AVATAR = "avatar";
     @BindView(R.id.iv_finish_bit)
-    View mViewFinish;
+    View viewFinish;
     @BindView(R.id.iv_bitmap)
-    ImageView mImageView;
+    ImageView imageView;
 
     public static void navigateToCustomBitmapActivity(Context context, String url, boolean isAvatar) {
         Intent intent = new Intent(context, CustomBitmapActivity.class);
@@ -35,9 +36,12 @@ public class CustomBitmapActivity extends AbstractLifeCycleActivity<VoidViewMode
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setImmersiveStatusBar(this, false);
-        GlideUtil.loadWithSelfBitmap(this, getIntent().getStringExtra(URL), mImageView,
-                getIntent().getBooleanExtra(URL, false) ? R.drawable.userimage : R.drawable.background);
-        mViewFinish.setOnClickListener(view -> finish());
+        Glide.with(this)
+                .load(getIntent().getStringExtra(URL))
+                .placeholder(getIntent().getBooleanExtra(URL, false) ? R.mipmap.icon_default_small_head : R.mipmap.default_place_img)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageView);
+        viewFinish.setOnClickListener(view -> finish());
     }
 
     @Override

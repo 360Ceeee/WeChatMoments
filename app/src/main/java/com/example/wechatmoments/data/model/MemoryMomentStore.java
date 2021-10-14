@@ -13,7 +13,6 @@ public class MemoryMomentStore {
     private static MemoryMomentStore instance;
 
     private MemoryMomentStore() {
-
     }
 
     public static MemoryMomentStore getInstance() {
@@ -38,7 +37,7 @@ public class MemoryMomentStore {
      * page = 1  ------  0 - 4， 对应0, 5
      * page = 2  ------  5 - 9， 对应5, 10
      * page = 3  ------  10 - 14， 对应10, 15
-     *
+     * <p>
      * 所以：
      * start = (page - 1) * 5
      * end = page * 5

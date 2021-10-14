@@ -1,22 +1,22 @@
 package com.example.wechatmoments.data.model;
 
 public class LoadMore {
-    private boolean mIsLoadMoreSuccess;
-    private boolean mHasMoreData;
+    private boolean isLoadMoreSuccess;
+    private boolean hasMoreData;
 
     public boolean isLoadMoreSuccess() {
-        return mIsLoadMoreSuccess;
+        return isLoadMoreSuccess;
     }
 
     public void setLoadMoreSuccess(boolean isLoadMoreSuccess) {
-        mIsLoadMoreSuccess = isLoadMoreSuccess;
+        this.isLoadMoreSuccess = isLoadMoreSuccess;
     }
 
     public boolean isHasMoreData() {
-        return mHasMoreData;
+        return hasMoreData;
     }
 
     public void setHasMoreData(boolean hasMoreData) {
-        mHasMoreData = hasMoreData;
+        this.hasMoreData = hasMoreData;
     }
 }

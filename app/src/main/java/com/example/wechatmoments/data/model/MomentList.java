@@ -8,28 +8,24 @@ import java.util.List;
 
 /**
  * {
- *     "content": "沙发！",
- *     "images": [{"url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRDy7HZaHxn15wWj6pXE4uMKAqHTC_uBgBlIzeeQSj2QaGgUzUmHg"},],
- *     "sender": {"username": "jport","nick": "Joe Portman","avatar": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRJm8UXZ0mYtjv1a48RKkFkdyd4kOWLJB0o_l7GuTS8-q8VF64w"},
- *     "comments": [{"content": "Good.","sender": {"username": "outman","nick": "Super hero","avatar": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRJm8UXZ0mYtjv1a48RKkFkdyd4kOWLJB0o_l7GuTS8-q8VF64w"}},
- *      error : losted
- *      unknown error : STARCRAFT2
- *
- *
- *   },
+ * "content": "沙发！",
+ * "images": [{"url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRDy7HZaHxn15wWj6pXE4uMKAqHTC_uBgBlIzeeQSj2QaGgUzUmHg"},],
+ * "sender": {"username": "jport","nick": "Joe Portman","avatar": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRJm8UXZ0mYtjv1a48RKkFkdyd4kOWLJB0o_l7GuTS8-q8VF64w"},
+ * "comments": [{"content": "Good.","sender": {"username": "outman","nick": "Super hero","avatar": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRJm8UXZ0mYtjv1a48RKkFkdyd4kOWLJB0o_l7GuTS8-q8VF64w"}},
+ * error : losted
+ * unknown error : STARCRAFT2
+ * <p>
+ * <p>
+ * },
  */
 
-public class MomentList extends BaseResVo{
+public class MomentList {
     private String content;
     private Sender sender;
     @SerializedName(value = "error", alternate = "unknown error")
     private String error;
     private List<Images> images;
     private List<Comments> comments;
-
-    protected MomentList(Parcel in) {
-        super();
-    }
 
     public String getContent() {
         return content;
@@ -59,7 +55,6 @@ public class MomentList extends BaseResVo{
     public void setError(String error) {
         this.error = error;
     }
-
 
     public List<Images> getImages() {
         return images;

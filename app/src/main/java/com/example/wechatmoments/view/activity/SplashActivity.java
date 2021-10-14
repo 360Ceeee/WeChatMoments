@@ -16,13 +16,13 @@ public class SplashActivity extends AbstractLifeCycleActivity<SplashViewModel> {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setImmersiveStatusBar(this, false);
         StatusBarUtil.hideNavigationBar(this);
-        mViewModel.delayTime();
+        viewModel.delayTime();
     }
 
     @Override
     protected void dataObserver() {
         super.dataObserver();
-        mViewModel.getDelayToTime().observe(this, delayTimeBean -> {
+        viewModel.getDelayToTime().observe(this, delayTimeBean -> {
             if (delayTimeBean != null) {
                 if (Constant.NEED_FINISH_SPLASH == delayTimeBean.getState()) {
                     MomentActivity.navigateToMomentActivity(SplashActivity.this);

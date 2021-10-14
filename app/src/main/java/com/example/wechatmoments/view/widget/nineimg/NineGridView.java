@@ -24,7 +24,7 @@ public class NineGridView extends ViewGroup {
     public static final int MODE_FILL = 0;          //填充模式，类似于微信
     public static final int MODE_GRID = 1;          //网格模式，类似于QQ，4张图会 2X2布局
 
-    private static ImageLoader mImageLoader;        //全局的图片加载器(必须设置,否者不显示图片)
+    private static ImageLoader imageLoader;        //全局的图片加载器(必须设置,否者不显示图片)
 
     private int singleImageSize = 250;              // 单张图片时的最大大小,单位dp
     private float singleImageRatio = 0.7f;          // 单张图片的宽高比(宽/高)
@@ -37,9 +37,9 @@ public class NineGridView extends ViewGroup {
     private int gridWidth;      // 宫格宽度
     private int gridHeight;     // 宫格高度
 
-    private List<ImageView> imageViews;
-    private List<ImageInfo> mImageInfo;
-    private NineGridViewAdapter mAdapter;
+    private final List<ImageView> imageViews;
+    private List<ImageInfo> imageInfo;
+    private NineGridViewAdapter adapter;
 
     public NineGridView(Context context) {
         this(context, null);
@@ -73,8 +73,8 @@ public class NineGridView extends ViewGroup {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = 0;
         int totalWidth = width - getPaddingLeft() - getPaddingRight();
-        if (mImageInfo != null && mImageInfo.size() > 0) {
-            if (mImageInfo.size() == 1) {
+        if (imageInfo != null && imageInfo.size() > 0) {
+            if (imageInfo.size() == 1) {
                 gridWidth = Math.min(singleImageSize, totalWidth);
                 gridHeight = (int) (gridWidth / singleImageRatio);
                 //矫正图片显示区域大小，不允许超过最大显示范围
@@ -84,7 +84,7 @@ public class NineGridView extends ViewGroup {
                     gridHeight = singleImageSize;
                 }
             } else {
-                if (mImageInfo.size() == 4) {
+                if (imageInfo.size() == 4) {
                     //4张图片 宽高都按总宽度的 1/2
                     gridWidth = gridHeight = (totalWidth - gridSpacing * 2) / 2;
                 } else {
@@ -100,8 +100,8 @@ public class NineGridView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        if (mImageInfo == null) return;
-        int childrenCount = mImageInfo.size();
+        if (imageInfo == null) return;
+        int childrenCount = imageInfo.size();
         for (int i = 0; i < childrenCount; i++) {
             ImageView childrenView = (ImageView) getChildAt(i);
 
@@ -113,15 +113,17 @@ public class NineGridView extends ViewGroup {
             int bottom = top + gridHeight;
             childrenView.layout(left, top, right, bottom);
 
-            if (mImageLoader != null) {
-                mImageLoader.onDisplayImage(getContext(), childrenView, mImageInfo.get(i).mThumbnailUrl);
+            if (imageLoader != null) {
+                imageLoader.onDisplayImage(getContext(), childrenView, imageInfo.get(i).thumbnailUrl);
             }
         }
     }
 
-    /** 设置适配器 */
+    /**
+     * 设置适配器
+     */
     public void setAdapter(@NonNull NineGridViewAdapter adapter) {
-        mAdapter = adapter;
+        this.adapter = adapter;
         List<ImageInfo> imageInfo = adapter.getImageInfo();
 
         if (imageInfo == null || imageInfo.isEmpty()) {
@@ -149,19 +151,18 @@ public class NineGridView extends ViewGroup {
         }
 
         //保证View的复用，避免重复创建
-        if (mImageInfo == null) {
+        if (this.imageInfo == null) {
             for (int i = 0; i < imageCount; i++) {
                 ImageView iv = getImageView(i);
                 if (iv == null) return;
                 addView(iv, generateDefaultLayoutParams());
             }
         } else {
-            int oldViewCount = mImageInfo.size();
-            int newViewCount = imageCount;
-            if (oldViewCount > newViewCount) {
-                removeViews(newViewCount, oldViewCount - newViewCount);
-            } else if (oldViewCount < newViewCount) {
-                for (int i = oldViewCount; i < newViewCount; i++) {
+            int oldViewCount = this.imageInfo.size();
+            if (oldViewCount > imageCount) {
+                removeViews(imageCount, oldViewCount - imageCount);
+            } else if (oldViewCount < imageCount) {
+                for (int i = oldViewCount; i < imageCount; i++) {
                     ImageView iv = getImageView(i);
                     if (iv == null) return;
                     addView(iv, generateDefaultLayoutParams());
@@ -176,39 +177,49 @@ public class NineGridView extends ViewGroup {
                 imageView.setMoreNum(adapter.getImageInfo().size() - maxImageSize);
             }
         }
-        mImageInfo = imageInfo;
+        this.imageInfo = imageInfo;
         requestLayout();
     }
 
-    /** 获得 ImageView 保证了 ImageView 的重用 */
+    /**
+     * 获得 ImageView 保证了 ImageView 的重用
+     */
     private ImageView getImageView(final int position) {
         ImageView imageView;
         if (position < imageViews.size()) {
             imageView = imageViews.get(position);
         } else {
-            imageView = mAdapter.generateImageView(getContext());
-            imageView.setOnClickListener(v -> mAdapter.onImageItemClick(getContext(), NineGridView.this, position, mAdapter.getImageInfo()));
+            imageView = adapter.generateImageView(getContext());
+            imageView.setOnClickListener(v -> adapter.onImageItemClick(getContext(), NineGridView.this, position, adapter.getImageInfo()));
             imageViews.add(imageView);
         }
         return imageView;
     }
 
-    /** 设置宫格间距 */
+    /**
+     * 设置宫格间距
+     */
     public void setGridSpacing(int spacing) {
         gridSpacing = spacing;
     }
 
-    /** 设置只有一张图片时的宽 */
+    /**
+     * 设置只有一张图片时的宽
+     */
     public void setSingleImageSize(int maxImageSize) {
         singleImageSize = maxImageSize;
     }
 
-    /** 设置只有一张图片时的宽高比 */
+    /**
+     * 设置只有一张图片时的宽高比
+     */
     public void setSingleImageRatio(float ratio) {
         singleImageRatio = ratio;
     }
 
-    /** 设置最大图片数 */
+    /**
+     * 设置最大图片数
+     */
     public void setMaxSize(int maxSize) {
         maxImageSize = maxSize;
     }
@@ -218,11 +229,11 @@ public class NineGridView extends ViewGroup {
     }
 
     public static void setImageLoader(ImageLoader imageLoader) {
-        mImageLoader = imageLoader;
+        NineGridView.imageLoader = imageLoader;
     }
 
     public static ImageLoader getImageLoader() {
-        return mImageLoader;
+        return imageLoader;
     }
 
     public interface ImageLoader {

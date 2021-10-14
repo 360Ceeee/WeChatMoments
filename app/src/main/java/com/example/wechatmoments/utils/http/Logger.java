@@ -64,7 +64,6 @@ public class Logger {
 
     /**
      * 添加space
-     *
      */
     private static void addIndentBlank(StringBuilder sb, int indent) {
         for (int i = 0; i < indent; i++) {

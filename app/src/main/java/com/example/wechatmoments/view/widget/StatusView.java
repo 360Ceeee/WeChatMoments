@@ -9,7 +9,7 @@ import android.view.View;
 
 public class StatusView extends View {
 
-    private int mBarSize;
+    private final int barSize;
 
     public StatusView(Context context) {
         this(context, null, 0);
@@ -23,20 +23,20 @@ public class StatusView extends View {
         super(context, attrs, defStyleAttr);
         Resources resources = getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        mBarSize = resources.getDimensionPixelSize(resourceId);
+        barSize = resources.getDimensionPixelSize(resourceId);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), mBarSize);
+            setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), barSize);
         } else {
             setMeasuredDimension(0, 0);
         }
     }
 
     public int getBarSize() {
-        return mBarSize;
+        return barSize;
     }
 }
 

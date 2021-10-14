@@ -2,6 +2,7 @@ package com.example.wechatmoments.utils;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
@@ -10,37 +11,29 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BaseResObserver<T> implements Observer<T> {
 
-    private Lifecycle mLifeCycle;
-
-    public BaseResObserver(Lifecycle lifecycle) {
-        mLifeCycle = lifecycle;
-    }
+    private Lifecycle lifeCycle;
 
     public BaseResObserver(Context context) {
         if (context instanceof LifecycleOwner) {
-            mLifeCycle = ((LifecycleOwner) context).getLifecycle();
+            lifeCycle = ((LifecycleOwner) context).getLifecycle();
         }
     }
 
     @Override
-    public void onSubscribe(Disposable d) {
+    public void onSubscribe(@NonNull Disposable d) {
         onRequestStart();
     }
 
     private boolean shouldPostResult() {
-        if (mLifeCycle != null) {
-            return !mLifeCycle.getCurrentState().isAtLeast(Lifecycle.State.CREATED);
+        if (lifeCycle != null) {
+            return !lifeCycle.getCurrentState().isAtLeast(Lifecycle.State.CREATED);
         }
         return false;
     }
 
     @Override
-    public void onNext(T baseInfo) {
-        if (baseInfo == null) {
-            return;
-        }
-
-        if(shouldPostResult()) {
+    public void onNext(@NonNull T baseInfo) {
+        if (shouldPostResult()) {
             return;
         }
         onRequestEnd();
@@ -54,8 +47,8 @@ public abstract class BaseResObserver<T> implements Observer<T> {
     }
 
     @Override
-    public void onError(Throwable e) {
-        if(shouldPostResult()) {
+    public void onError(@NonNull Throwable e) {
+        if (shouldPostResult()) {
             return;
         }
         onRequestEnd();
@@ -70,12 +63,14 @@ public abstract class BaseResObserver<T> implements Observer<T> {
 
     /**
      * 返回成功
+     *
      * @param t
      */
     protected abstract void onSuccess(T t);
 
     /**
      * 返回失败
+     *
      * @param e
      */
     protected void onFailure(Throwable e) {

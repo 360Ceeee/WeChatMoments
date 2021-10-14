@@ -23,7 +23,7 @@ public class NineGridViewWrapper extends ImageView {
     private float textSize = 35;          //显示文字的大小单位sp
     private int textColor = 0xFFFFFFFF;   //显示文字的颜色
 
-    private TextPaint textPaint;              //文字的画笔
+    private final TextPaint textPaint;              //文字的画笔
     private String msg = "";                  //要绘制的文字
 
     public NineGridViewWrapper(Context context) {

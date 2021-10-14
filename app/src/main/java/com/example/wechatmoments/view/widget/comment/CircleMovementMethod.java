@@ -10,35 +10,33 @@ import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-public class CircleMovement extends BaseMovementMethod {
+public class CircleMovementMethod extends BaseMovementMethod {
     private final static int DEFAULT_COLOR_ID = android.R.color.transparent;
-    /**
-     * 整个textView的背景色
-     */
-    private int textViewBgColor;
     /**
      * 点击部分文字时部分文字的背景色
      */
-    private int clickableSpanBgClor;
+    private final int clickableSpanBgColor;
 
-    private BackgroundColorSpan mBgSpan;
-    private ClickableSpan[] mClickLinks;
+    private BackgroundColorSpan bgSpan;
+    private ClickableSpan[] clickLinks;
 
 
     /**
-     * @param clickableSpanBgClor 点击选中部分时的背景色
+     * @param clickableSpanBgColor 点击选中部分时的背景色
      */
-    public CircleMovement(int clickableSpanBgClor) {
-        this.clickableSpanBgClor = clickableSpanBgClor;
+    public CircleMovementMethod(int clickableSpanBgColor) {
+        this.clickableSpanBgColor = clickableSpanBgColor;
     }
 
     /**
-     * @param clickableSpanBgClor 点击选中部分时的背景色
+     * @param clickableSpanBgColor 点击选中部分时的背景色
      * @param textViewBgColor  整个textView点击时的背景色
      */
-    public CircleMovement(int clickableSpanBgClor, int textViewBgColor) {
-        this.textViewBgColor = textViewBgColor;
-        this.clickableSpanBgClor = clickableSpanBgClor;
+    public CircleMovementMethod(int clickableSpanBgColor, int textViewBgColor) {
+        /**
+         * 整个textView的背景色
+         */
+        this.clickableSpanBgColor = clickableSpanBgColor;
     }
 
     @Override
@@ -60,17 +58,17 @@ public class CircleMovement extends BaseMovementMethod {
             int line = layout.getLineForVertical(y);
             int off = layout.getOffsetForHorizontal(line, x);
 
-            mClickLinks = buffer.getSpans(off, off, ClickableSpan.class);
-            if (mClickLinks.length > 0) {
+            clickLinks = buffer.getSpans(off, off, ClickableSpan.class);
+            if (clickLinks.length > 0) {
                 // 点击的是Span区域，不要把点击事件传递
                 Selection.setSelection(buffer,
-                        buffer.getSpanStart(mClickLinks[0]),
-                        buffer.getSpanEnd(mClickLinks[0]));
+                        buffer.getSpanStart(clickLinks[0]),
+                        buffer.getSpanEnd(clickLinks[0]));
                 //设置点击区域的背景色
-                mBgSpan = new BackgroundColorSpan(clickableSpanBgClor);
-                buffer.setSpan(mBgSpan,
-                        buffer.getSpanStart(mClickLinks[0]),
-                        buffer.getSpanEnd(mClickLinks[0]),
+                bgSpan = new BackgroundColorSpan(clickableSpanBgColor);
+                buffer.setSpan(bgSpan,
+                        buffer.getSpanStart(clickLinks[0]),
+                        buffer.getSpanEnd(clickLinks[0]),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             } else {
                 // textview选中效果
@@ -79,21 +77,19 @@ public class CircleMovement extends BaseMovementMethod {
             }
 
         } else if (action == MotionEvent.ACTION_UP) {
-            if (mClickLinks.length > 0) {
-                mClickLinks[0].onClick(widget);
-                if (mBgSpan != null) {//移除点击时设置的背景span
-                    buffer.removeSpan(mBgSpan);
+            if (clickLinks.length > 0) {
+                clickLinks[0].onClick(widget);
+                if (bgSpan != null) {//移除点击时设置的背景span
+                    buffer.removeSpan(bgSpan);
                 }
-            } else {
-
             }
             Selection.removeSelection(buffer);
             widget.setBackgroundResource(DEFAULT_COLOR_ID);
         } else if (action == MotionEvent.ACTION_MOVE) {
             //这种情况不用做处理
         } else {
-            if (mBgSpan != null) {//移除点击时设置的背景span
-                buffer.removeSpan(mBgSpan);
+            if (bgSpan != null) {//移除点击时设置的背景span
+                buffer.removeSpan(bgSpan);
             }
             widget.setBackgroundResource(DEFAULT_COLOR_ID);
         }

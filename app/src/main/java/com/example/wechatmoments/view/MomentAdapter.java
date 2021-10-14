@@ -37,21 +37,21 @@ import butterknife.ButterKnife;
 
 public class MomentAdapter extends RecyclerView.Adapter {
 
-    private Context mContext;
-    private List<MomentList> mList;
+    private final Context context;
+    private final List<MomentList> list;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOT = 2;
 
     public MomentAdapter(Context context, List<MomentList> list) {
-        this.mContext = context;
-        this.mList = list;
+        this.context = context;
+        this.list = list;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //条目
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (viewType == TYPE_ITEM) {
             return new MomentViewHolder(inflater.inflate(R.layout.item_moment, parent, false));
         } else {
@@ -79,7 +79,7 @@ public class MomentAdapter extends RecyclerView.Adapter {
      */
     private void adaptData(@NonNull MomentViewHolder holder, int position) {
         holder.viewLine.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
-        MomentList momentList = mList.get(position);
+        MomentList momentList = list.get(position);
         if (momentList == null) {
             return;
         }
@@ -105,10 +105,10 @@ public class MomentAdapter extends RecyclerView.Adapter {
         Sender sender = momentList.getSender();
         String avatar = sender.getAvatar();
         //sender在数据结构中已经判空
-        GlideUtil.loadRoundedCorner(mContext, avatar, holder.ivHead, R.mipmap.icon_default_small_head);
+        GlideUtil.loadRoundedCorner(context, avatar, holder.ivHead, R.mipmap.icon_default_small_head);
         holder.ivHead.setOnClickListener(view -> {
             if (!TextUtils.isEmpty(avatar)) {
-                CustomBitmapActivity.navigateToCustomBitmapActivity(mContext, avatar, true);
+                CustomBitmapActivity.navigateToCustomBitmapActivity(context, avatar, true);
             } else {
                 ToastView.showToast("数据异常");
             }
@@ -130,8 +130,8 @@ public class MomentAdapter extends RecyclerView.Adapter {
         List<Comments> comments = momentList.getComments();
         if (comments != null && comments.size() != 0) {
             holder.commentRoot.setVisibility(View.VISIBLE);
-            holder.mCommentsView.setList(comments);
-            holder.mCommentsView.notifyDataSetChanged();
+            holder.commentsView.setList(comments);
+            holder.commentsView.notifyDataSetChanged();
         } else {
             holder.commentRoot.setVisibility(View.GONE);
         }
@@ -148,15 +148,15 @@ public class MomentAdapter extends RecyclerView.Adapter {
         List<Images> images = momentListBean.getImages();
         List<ImageInfo> imageInfo = new ArrayList<>();
         if (images != null && images.size() != 0) {
-            holder.mNineGridView.setVisibility(View.VISIBLE);
+            holder.nineGridView.setVisibility(View.VISIBLE);
             for (Images image : images) {
                 imageInfo.add(getImageInfo(image));
             }
-            NineGridViewClickAdapter adapter = new NineGridViewClickAdapter(mContext, imageInfo);
-            holder.mNineGridView.setAdapter(adapter);
+            NineGridViewClickAdapter adapter = new NineGridViewClickAdapter(context, imageInfo);
+            holder.nineGridView.setAdapter(adapter);
 
         } else {
-            holder.mNineGridView.setVisibility(View.GONE);
+            holder.nineGridView.setVisibility(View.GONE);
         }
     }
 
@@ -170,8 +170,8 @@ public class MomentAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if (mList != null && mList.size() != 0) {
-            return mList.size() + 1;
+        if (list != null && list.size() != 0) {
+            return list.size() + 1;
         }
         return 1;
     }
@@ -194,13 +194,13 @@ public class MomentAdapter extends RecyclerView.Adapter {
         @BindView(R.id.tv_desc)
         TextView tvDesc;
         @BindView(R.id.ngv)
-        NineGridView mNineGridView;
+        NineGridView nineGridView;
         @BindView(R.id.view_line)
         View viewLine;
         @BindView(R.id.rl_comment)
         View commentRoot;
         @BindView(R.id.cv)
-        CommentsView mCommentsView;
+        CommentsView commentsView;
         @BindView(R.id.tv_time)
         TextView tvTime;
 
@@ -213,20 +213,20 @@ public class MomentAdapter extends RecyclerView.Adapter {
 
     public void setFootView(int loadingState) {
         if (loadingState == LoadingState.LOADING) {
-            mProgressBar.setVisibility(View.VISIBLE);
-            mTextView.setVisibility(View.VISIBLE);
-            mTextView.setText("正在加载...");
+            progressBar.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.VISIBLE);
+            textView.setText("正在加载...");
         } else if (loadingState == LoadingState.LOADING_ERROR) {
-            mProgressBar.setVisibility(View.GONE);
-            mTextView.setVisibility(View.VISIBLE);
-            mTextView.setText("加载出错~");
+            progressBar.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
+            textView.setText("加载出错~");
         } else if (loadingState == LoadingState.LOADING_COMPLETE) {
-            mProgressBar.setVisibility(View.GONE);
-            mProgressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
         } else if (loadingState == LoadingState.LOADING_NO_MORE) {
-            mProgressBar.setVisibility(View.GONE);
-            mTextView.setVisibility(View.VISIBLE);
-            mTextView.setText("更多精彩内容,敬请期待~");
+            progressBar.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
+            textView.setText("更多精彩内容,敬请期待~");
         }
     }
 
@@ -234,18 +234,18 @@ public class MomentAdapter extends RecyclerView.Adapter {
     /**
      * 底部内容
      */
-    TextView mTextView;
+    TextView textView;
     /**
      * 底部进度条
      */
-    ProgressBar mProgressBar;
+    ProgressBar progressBar;
 
     private class FootViewHolder extends RecyclerView.ViewHolder {
 
         public FootViewHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView) itemView.findViewById(R.id.we_media_loading);
-            mProgressBar = (ProgressBar) itemView.findViewById(R.id.we_media_progress);
+            textView = (TextView) itemView.findViewById(R.id.we_media_loading);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.we_media_progress);
         }
     }
 

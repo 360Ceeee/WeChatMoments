@@ -35,38 +35,38 @@ import butterknife.BindView;
 public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
 
     @BindView(R.id.rv_list)
-    RecyclerView mRecyclerView;
+    RecyclerView recyclerView;
 
     @BindView(R.id.sv_status)
-    StatusView mStatusView;
+    StatusView statusView;
 
     @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @BindView(R.id.appbar)
-    AppBarLayout mAppBarLayout;
+    AppBarLayout appBarLayout;
 
     @BindView(R.id.rl_bar_title)
-    View mRlTitleView;
+    View rlTitleView;
 
     @BindView(R.id.iv_user_bg)
-    ImageView mIvSelfBg;
+    ImageView ivSelfBg;
 
     @BindView(R.id.iv_self_head)
-    ImageView mIvSelfHead;
+    ImageView ivSelfHead;
 
     @BindView(R.id.tv_self_name)
-    TextView mTvSelfName;
+    TextView tvSelfName;
 
-    private List<MomentList> mList;
+    private List<MomentList> list;
 
-    private MomentAdapter mAdapter;
+    private MomentAdapter adapter;
 
-    private int mAppBarLayoutHeight;
+    private int appBarLayoutHeight;
 
-    private long mExitTime;
+    private long exitTime;
 
-    private int mTitleViewHeight;
+    private int titleViewHeight;
 
 
     public static void navigateToMomentActivity(Context context) {
@@ -79,25 +79,25 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setImmersiveStatusBar(this, false);
         initView();
-        mSwipeRefreshLayout.setRefreshing(true);
-        mViewModel.refreshData(this);
+        swipeRefreshLayout.setRefreshing(true);
+        viewModel.refreshData(this);
     }
 
     private void initView() {
-        mSwipeRefreshLayout.setProgressViewEndTarget(false, dip2px());
-        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        mList = new ArrayList<>();
+        swipeRefreshLayout.setProgressViewEndTarget(false, dip2px());
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        list = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mAdapter = new MomentAdapter(this, mList);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        mAppBarLayout.post(() -> {
-            mTitleViewHeight = mRlTitleView.getHeight();
-            mAppBarLayoutHeight = mAppBarLayout.getHeight();
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new MomentAdapter(this, list);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        appBarLayout.post(() -> {
+            titleViewHeight = rlTitleView.getHeight();
+            appBarLayoutHeight = appBarLayout.getHeight();
         });
-        mRlTitleView.setOnClickListener(v -> mRecyclerView.scrollToPosition(Constant.ZERO));
+        rlTitleView.setOnClickListener(v -> recyclerView.scrollToPosition(Constant.ZERO));
 
     }
 
@@ -118,15 +118,15 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
      * 加载更多
      */
     private void recyclerViewEvent() {
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 try {
                     if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                         //改变加载的状态
-                        mAdapter.setFootView(LoadingState.LOADING);
-                        mViewModel.loadMoreData();
+                        adapter.setFootView(LoadingState.LOADING);
+                        viewModel.loadMoreData();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -144,34 +144,34 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
      * 刷新
      */
     private void refreshEvent() {
-        mSwipeRefreshLayout.setOnRefreshListener(() -> mViewModel.refreshData(MomentActivity.this));
+        swipeRefreshLayout.setOnRefreshListener(() -> viewModel.refreshData(MomentActivity.this));
     }
 
     /**
      * appBarEvent事件
      */
     private void appBarEvent() {
-        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (verticalOffset >= Constant.ZERO) {
-                mSwipeRefreshLayout.setEnabled(true);
+                swipeRefreshLayout.setEnabled(true);
                 //将标题栏的颜色设置为完全不透明状态
-                mRlTitleView.setAlpha(0f);
-                mStatusView.setAlpha(0f);
+                rlTitleView.setAlpha(0f);
+                statusView.setAlpha(0f);
                 StatusBarUtil.setImmersiveStatusBar(MomentActivity.this, false);
             } else {
-                if (!mSwipeRefreshLayout.isRefreshing()) {
-                    mSwipeRefreshLayout.setEnabled(false);
+                if (!swipeRefreshLayout.isRefreshing()) {
+                    swipeRefreshLayout.setEnabled(false);
                 }
                 int abs = Math.abs(verticalOffset);
-                if (abs <= mAppBarLayoutHeight - (mTitleViewHeight + StatusBarUtil.getStatusBarHeight(MomentActivity.this))) {
-                    float alpha = (float) abs / mAppBarLayoutHeight;
-                    mRlTitleView.setAlpha(alpha);
-                    mStatusView.setAlpha(alpha);
+                if (abs <= appBarLayoutHeight - (titleViewHeight + StatusBarUtil.getStatusBarHeight(MomentActivity.this))) {
+                    float alpha = (float) abs / appBarLayoutHeight;
+                    rlTitleView.setAlpha(alpha);
+                    statusView.setAlpha(alpha);
                     StatusBarUtil.setImmersiveStatusBar(MomentActivity.this, false);
                 } else {
                     //将标题栏的颜色设置为完全不透明状态
-                    mRlTitleView.setAlpha(1.0f);
-                    mStatusView.setAlpha(1.0f);
+                    rlTitleView.setAlpha(1.0f);
+                    statusView.setAlpha(1.0f);
                     StatusBarUtil.setImmersiveStatusBar(MomentActivity.this, true, ContextCompat.getColor(MomentActivity.this, R.color.home_status_bar_color));
                 }
             }
@@ -193,12 +193,12 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
      * 分页回调
      */
     private void observerLoadMore() {
-        mViewModel.getLoadMore().observe(this, loadMoreBean -> {
+        viewModel.getLoadMore().observe(this, loadMoreBean -> {
             //加载更多成功 判断是否还有更多数据
             if (loadMoreBean.isHasMoreData()) {
-                mAdapter.setFootView(LoadingState.LOADING_COMPLETE);
+                adapter.setFootView(LoadingState.LOADING_COMPLETE);
             } else {
-                mAdapter.setFootView(LoadingState.LOADING_NO_MORE);
+                adapter.setFootView(LoadingState.LOADING_NO_MORE);
             }
         });
     }
@@ -207,14 +207,14 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
      * ，列表数据回调
      */
     private void observerMomentList() {
-        mViewModel.getMomentList().observe(this, momentListBeans -> {
-            mSwipeRefreshLayout.setRefreshing(false);
+        viewModel.getMomentList().observe(this, momentListBeans -> {
+            swipeRefreshLayout.setRefreshing(false);
             if (momentListBeans != null && momentListBeans.size() != 0) {
-                if (mViewModel.isRefresh()) {
-                    mList.clear();
+                if (viewModel.isRefresh()) {
+                    list.clear();
                 }
-                mList.addAll(momentListBeans);
-                mAdapter.notifyDataSetChanged();
+                list.addAll(momentListBeans);
+                adapter.notifyDataSetChanged();
             }
         });
     }
@@ -223,8 +223,8 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
      * 用户信息回调
      */
     private void observerUserInfo() {
-        mViewModel.getUserInfoData().observe(this, userInfo -> {
-            mSwipeRefreshLayout.setRefreshing(false);
+        viewModel.getUserInfoData().observe(this, userInfo -> {
+            swipeRefreshLayout.setRefreshing(false);
             if (userInfo != null) {
                 setUserInfo(userInfo);
             }
@@ -237,11 +237,11 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
      * @param userInfo 用户信息
      */
     private void setUserInfo(UserInfo userInfo) {
-        mTvSelfName.setText(userInfo.getUsername());
-        GlideUtil.load(this, userInfo.getProfileImage(), mIvSelfBg, R.drawable.background);
-        GlideUtil.load(this, userInfo.getAvatar(), mIvSelfHead, R.drawable.userimage);
-        mIvSelfHead.setOnClickListener(view -> CustomBitmapActivity.navigateToCustomBitmapActivity(MomentActivity.this, userInfo.getAvatar(), true));
-        mIvSelfBg.setOnClickListener(view -> CustomBitmapActivity.navigateToCustomBitmapActivity(MomentActivity.this, userInfo.getProfileImage(), false));
+        tvSelfName.setText(userInfo.getUsername());
+        GlideUtil.load(this, userInfo.getProfileImage(), ivSelfBg, R.drawable.background);
+        GlideUtil.load(this, userInfo.getAvatar(), ivSelfHead, R.drawable.userimage);
+        ivSelfHead.setOnClickListener(view -> CustomBitmapActivity.navigateToCustomBitmapActivity(MomentActivity.this, userInfo.getAvatar(), true));
+        ivSelfBg.setOnClickListener(view -> CustomBitmapActivity.navigateToCustomBitmapActivity(MomentActivity.this, userInfo.getProfileImage(), false));
     }
 
     @Override
@@ -251,9 +251,9 @@ public class MomentActivity extends AbstractLifeCycleActivity<MomentViewModel> {
 
     @Override
     public void onBackPressed() {
-        if ((System.currentTimeMillis() - mExitTime) > Constant.MAX_TIME_MILLIS) {
+        if ((System.currentTimeMillis() - exitTime) > Constant.MAX_TIME_MILLIS) {
             ToastView.showToast("再次点击返回键退出界面");
-            mExitTime = System.currentTimeMillis();
+            exitTime = System.currentTimeMillis();
         } else {
             moveTaskToBack(true);
         }

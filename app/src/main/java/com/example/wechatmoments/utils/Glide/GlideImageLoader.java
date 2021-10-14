@@ -7,15 +7,15 @@ import android.widget.ImageView;
 import com.example.wechatmoments.R;
 import com.example.wechatmoments.view.widget.nineimg.NineGridView;
 
-public class GlideImageLoader implements NineGridView.ImageLoader{
+public class GlideImageLoader implements NineGridView.ImageLoader {
 
     @Override
-    public void onDisplayImage(Context context, ImageView imageView, String url){
+    public void onDisplayImage(Context context, ImageView imageView, String url) {
         GlideUtil.load(context, url, imageView, R.mipmap.default_place_img);
     }
 
     @Override
-    public Bitmap getCacheImage(String url){
+    public Bitmap getCacheImage(String url) {
         return null;
     }
 }

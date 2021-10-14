@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.wechatmoments.utils.bitmapcache.MomentBitmapManager;
 
 public class GlideUtil {
     /**
@@ -35,18 +34,6 @@ public class GlideUtil {
      */
     public static void load(Context context, String imageUrl, ImageView imageView, int placeId) {
         Glide.with(context).load(imageUrl).apply(getPlaceErrorCenter(placeId).diskCacheStrategy(DiskCacheStrategy.ALL)).into(imageView);
-    }
-
-    /**
-     * 加载图片--自定义的图片框架
-     *
-     * @param context   Context
-     * @param imageUrl  url
-     * @param imageView ImageView
-     * @param placeId   缺省图
-     */
-    public static void loadWithSelfBitmap(Context context, String imageUrl, ImageView imageView, int placeId) {
-        MomentBitmapManager.getInstance(context).display(imageView, imageUrl, placeId);
     }
 
     private static RequestOptions getPlaceErrorCenter(int errorResId) {

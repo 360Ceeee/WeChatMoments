@@ -17,13 +17,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpHelper {
 
-    private static volatile HttpHelper mHttpHelper = null;
+    private static volatile HttpHelper sHttpHelper = null;
 
-    private static OkHttpClient mOkHttpClient;
+    private static OkHttpClient sOkHttpClient;
 
-    private static Retrofit mRetrofit;
+    private static Retrofit sRetrofit;
 
-    private static OkHttpClient.Builder mBuilder;
+    private static OkHttpClient.Builder sBuilder;
 
     private static String BASE_URL;
 
@@ -31,14 +31,14 @@ public class HttpHelper {
     }
 
     public static HttpHelper getInstance() {
-        if (mHttpHelper == null) {
+        if (sHttpHelper == null) {
             synchronized (HttpHelper.class) {
-                if (mHttpHelper == null) {
-                    mHttpHelper = new HttpHelper();
+                if (sHttpHelper == null) {
+                    sHttpHelper = new HttpHelper();
                 }
             }
         }
-        return mHttpHelper;
+        return sHttpHelper;
     }
 
     public static void init(Context context, String baseUrl) {
@@ -50,15 +50,16 @@ public class HttpHelper {
 
 
     public static class Builder {
-        private OkHttpClient mOkHttpClient;
+        private OkHttpClient okHttpClient;
 
-        private OkHttpClient.Builder mBuilder;
+        private OkHttpClient.Builder builder;
 
-        private Retrofit mRetrofit;
+        private Retrofit retrofit;
 
-        private Context mContext;
+        private final Context context;
+
         public Builder(Context context) {
-            this.mContext=context;
+            this.context = context;
         }
 
         /**
@@ -69,11 +70,11 @@ public class HttpHelper {
         public Builder initOkHttp() {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLogger());
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            if (mBuilder == null) {
+            if (builder == null) {
                 synchronized (HttpHelper.class) {
-                    if (mBuilder == null) {
-                        Cache cache = new Cache(new File(mContext.getCacheDir(), "HttpCache"), 1024 * 1024 * 10);
-                        mBuilder = new OkHttpClient.Builder()
+                    if (builder == null) {
+                        Cache cache = new Cache(new File(context.getCacheDir(), "HttpCache"), 1024 * 1024 * 10);
+                        builder = new OkHttpClient.Builder()
                                 .cache(cache)
                                 .addInterceptor(interceptor)
                                 .connectTimeout(30, TimeUnit.SECONDS)
@@ -95,7 +96,7 @@ public class HttpHelper {
          */
         public Builder addInterceptor(Interceptor mInterceptor) {
             ObjectClassUtil.checkNotNull(mInterceptor);
-            this.mBuilder.addNetworkInterceptor(mInterceptor);
+            this.builder.addNetworkInterceptor(mInterceptor);
             return this;
         }
 
@@ -112,8 +113,8 @@ public class HttpHelper {
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(baseUrl);
             BASE_URL = baseUrl;
-            this.mOkHttpClient = mBuilder.build();
-            this.mRetrofit = builder.client(mOkHttpClient)
+            this.okHttpClient = this.builder.build();
+            this.retrofit = builder.client(okHttpClient)
                     .build();
             return this;
         }
@@ -126,18 +127,18 @@ public class HttpHelper {
 
     private void build(Builder builder) {
         ObjectClassUtil.checkNotNull(builder);
-        ObjectClassUtil.checkNotNull(builder.mBuilder);
-        ObjectClassUtil.checkNotNull(builder.mOkHttpClient);
-        ObjectClassUtil.checkNotNull(builder.mRetrofit);
-        mBuilder = builder.mBuilder;
-        mOkHttpClient = builder.mOkHttpClient;
-        mRetrofit = builder.mRetrofit;
+        ObjectClassUtil.checkNotNull(builder.builder);
+        ObjectClassUtil.checkNotNull(builder.okHttpClient);
+        ObjectClassUtil.checkNotNull(builder.retrofit);
+        sBuilder = builder.builder;
+        sOkHttpClient = builder.okHttpClient;
+        sRetrofit = builder.retrofit;
     }
 
     public <T> T create(Class<T> clz) {
         ObjectClassUtil.checkNotNull(clz);
-        ObjectClassUtil.checkNotNull(mRetrofit);
-        return mRetrofit.create(clz);
+        ObjectClassUtil.checkNotNull(sRetrofit);
+        return sRetrofit.create(clz);
     }
 
 }

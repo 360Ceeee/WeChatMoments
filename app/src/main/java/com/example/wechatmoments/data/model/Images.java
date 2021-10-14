@@ -3,7 +3,7 @@ package com.example.wechatmoments.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Images implements Parcelable {
+public class Images {
     /**
      * "url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS3AqhlL_Ubqa8G_usBmy3q8z0cg8JieuVb1pV2nie4vikVEP5U"
      */
@@ -14,18 +14,6 @@ public class Images implements Parcelable {
         url = in.readString();
     }
 
-    public static final Creator<Images> CREATOR = new Creator<Images>() {
-        @Override
-        public Images createFromParcel(Parcel in) {
-            return new Images(in);
-        }
-
-        @Override
-        public Images[] newArray(int size) {
-            return new Images[size];
-        }
-    };
-
     public String getUrl() {
         return url;
     }
@@ -34,13 +22,4 @@ public class Images implements Parcelable {
         this.url = url;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(url);
-    }
 }

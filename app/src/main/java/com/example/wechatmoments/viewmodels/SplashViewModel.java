@@ -20,7 +20,7 @@ import io.reactivex.disposables.Disposable;
 
 public class SplashViewModel extends BaseViewModel<VoidRepository> implements LifecycleObserver {
 
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private MutableLiveData<DelayTime> delayToTime = new MutableLiveData<>();
 
@@ -46,14 +46,14 @@ public class SplashViewModel extends BaseViewModel<VoidRepository> implements Li
         // 参数3 = 时间单位；
         Disposable subscribe = Observable.interval(0, 1, TimeUnit.SECONDS)
                 .subscribe(aLong -> {
-                    delayToTime.postValue(new DelayTime(Constant.NOT_NEED_FINISH_SPLASH,aLong + 1));
+                    delayToTime.postValue(new DelayTime(Constant.NOT_NEED_FINISH_SPLASH, aLong + 1));
                     if (aLong >= Constant.FINISH_SPLASH) {
                         dispose();
-                        delayToTime.postValue(new DelayTime(Constant.NEED_FINISH_SPLASH,aLong + 1));
+                        delayToTime.postValue(new DelayTime(Constant.NEED_FINISH_SPLASH, aLong + 1));
                     }
 
                 });
-        mCompositeDisposable.add(subscribe);
+        compositeDisposable.add(subscribe);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -62,6 +62,6 @@ public class SplashViewModel extends BaseViewModel<VoidRepository> implements Li
     }
 
     private void dispose() {
-        mCompositeDisposable.dispose();
+        compositeDisposable.dispose();
     }
 }

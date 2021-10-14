@@ -64,6 +64,7 @@ public class MomentViewModel extends BaseViewModel<MomentRepository> implements 
 
     /**
      * 获取用户信息
+     *
      * @param context Context
      */
     public void getUserInfo(Context context) {
@@ -83,9 +84,10 @@ public class MomentViewModel extends BaseViewModel<MomentRepository> implements 
 
     /**
      * 获取列表
+     *
      * @param context Context
      */
-    public void getMomentList(Context context){
+    public void getMomentList(Context context) {
         mRepository.getMomentList().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new BaseResObserver<List<MomentList>>(context) {
             @Override
             protected void onSuccess(List<MomentList> momentLists) {
@@ -101,7 +103,7 @@ public class MomentViewModel extends BaseViewModel<MomentRepository> implements 
             }
 
             @Override
-            protected void onFailure(Throwable e){
+            protected void onFailure(Throwable e) {
                 super.onFailure(e);
                 momentList.setValue(null);
             }
@@ -140,8 +142,6 @@ public class MomentViewModel extends BaseViewModel<MomentRepository> implements 
 
         return list.subList(0, maxSize);
     }
-
-
 
 
 }

@@ -5,112 +5,76 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class ImageInfo implements Parcelable {
-    public String mThumbnailUrl;
-    public String mBigImageUrl;
-    public int mImageViewHeight;
-    public int mImageViewWidth;
-    public int mImageViewX;
-    public int mImageViewY;
+public class ImageInfo {
+    public String thumbnailUrl;
+    public String bigImageUrl;
+    public int imageViewHeight;
+    public int imageViewWidth;
+    public int imageViewX;
+    public int imageViewY;
 
-    public ImageInfo(){
-
+    public ImageInfo() {
     }
-
-    protected ImageInfo(Parcel in) {
-        mThumbnailUrl = in.readString();
-        mBigImageUrl = in.readString();
-        mImageViewHeight = in.readInt();
-        mImageViewWidth = in.readInt();
-        mImageViewX = in.readInt();
-        mImageViewY = in.readInt();
-    }
-
-    public static final Creator<ImageInfo> CREATOR = new Creator<ImageInfo>() {
-        @Override
-        public ImageInfo createFromParcel(Parcel in) {
-            return new ImageInfo(in);
-        }
-
-        @Override
-        public ImageInfo[] newArray(int size) {
-            return new ImageInfo[size];
-        }
-    };
 
     public String getThumbnailUrl() {
-        return mThumbnailUrl;
+        return thumbnailUrl;
     }
 
-    public void setThumbnailUrl(String sThumbnailUrl) {
-        this.mThumbnailUrl = sThumbnailUrl;
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getBigImageUrl() {
-        return mBigImageUrl;
+        return bigImageUrl;
     }
 
-    public void setBigImageUrl(String mBigImageUrl) {
-        this.mBigImageUrl = mBigImageUrl;
+    public void setBigImageUrl(String bigImageUrl) {
+        this.bigImageUrl = bigImageUrl;
     }
 
     public int getImageViewHeight() {
-        return mImageViewHeight;
+        return imageViewHeight;
     }
 
-    public void setImageViewHeight(int mImageViewHeight) {
-        this.mImageViewHeight = mImageViewHeight;
+    public void setImageViewHeight(int imageViewHeight) {
+        this.imageViewHeight = imageViewHeight;
     }
 
     public int getImageViewWidth() {
-        return mImageViewWidth;
+        return imageViewWidth;
     }
 
-    public void setImageViewWidth(int mImageViewWidth) {
-        this.mImageViewWidth = mImageViewWidth;
+    public void setImageViewWidth(int imageViewWidth) {
+        this.imageViewWidth = imageViewWidth;
     }
 
     public int getImageViewX() {
-        return mImageViewX;
+        return imageViewX;
     }
 
-    public void setImageViewX(int mImageViewX) {
-        this.mImageViewX = mImageViewX;
+    public void setImageViewX(int imageViewX) {
+        this.imageViewX = imageViewX;
     }
 
     public int getImageViewY() {
-        return mImageViewY;
+        return imageViewY;
     }
 
-    public void setImageViewY(int mImageViewY) {
-        this.mImageViewY = mImageViewY;
+    public void setImageViewY(int imageViewY) {
+        this.imageViewY = imageViewY;
     }
 
     @NonNull
     @Override
     public String toString() {
         return "ImageInfo{" +
-                "imageViewY=" + mImageViewY +
-                ", imageViewX=" + mImageViewX +
-                ", imageViewWidth=" + mImageViewWidth +
-                ", imageViewHeight=" + mImageViewHeight +
-                ", bigImageUrl='" + mBigImageUrl + '\'' +
-                ", thumbnailUrl='" + mThumbnailUrl + '\'' +
+                "imageViewY=" + imageViewY +
+                ", imageViewX=" + imageViewX +
+                ", imageViewWidth=" + imageViewWidth +
+                ", imageViewHeight=" + imageViewHeight +
+                ", bigImageUrl='" + bigImageUrl + '\'' +
+                ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 '}';
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mThumbnailUrl);
-        dest.writeString(mBigImageUrl);
-        dest.writeInt(mImageViewHeight);
-        dest.writeInt(mImageViewWidth);
-        dest.writeInt(mImageViewX);
-        dest.writeInt(mImageViewY);
-    }
 }

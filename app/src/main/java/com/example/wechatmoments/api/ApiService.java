@@ -13,6 +13,7 @@ public interface ApiService {
 
     /**
      * 请求用户信息
+     *
      * @return
      */
     @GET("user/jsmith")
@@ -20,6 +21,7 @@ public interface ApiService {
 
     /**
      * 请求列表
+     *
      * @return
      */
     @GET("user/jsmith/tweets")

@@ -16,11 +16,7 @@ public class ObjectClassUtil {
                 return ((Class<T>) ((ParameterizedType) (Objects.requireNonNull(object.getClass()
                         .getGenericSuperclass()))).getActualTypeArguments()[i])
                         .newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (ClassCastException e) {
+            } catch (InstantiationException | IllegalAccessException | ClassCastException e) {
                 e.printStackTrace();
             }
 
