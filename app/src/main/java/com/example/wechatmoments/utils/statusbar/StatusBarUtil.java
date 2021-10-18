@@ -10,24 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.IntDef;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 public class StatusBarUtil {
-    public final static int TYPE_MIUI = 0;
-    public final static int TYPE_FLYME = 1;
-    public final static int TYPE_M = 3;//6.0
-
-    @IntDef({TYPE_MIUI,
-            TYPE_FLYME,
-            TYPE_M})
-    @Retention(RetentionPolicy.SOURCE)
-    @interface ViewType {
-    }
 
     /**
      * 修改状态栏颜色，支持4.4以上版本
@@ -94,7 +77,7 @@ public class StatusBarUtil {
         setTranslucentStatus(activity);
         if (fontIconDark) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                setStatusBarFontIconDark(activity, TYPE_M);
+                setStatusBarFontIconDark(activity);
             } else {//其他情况下我们将状态栏设置为灰色，就不会看不见字体(字体是白色的，所以背景灰色下可以看得到)
                 setStatusBarColor(activity, color);//灰色
             }
@@ -104,7 +87,7 @@ public class StatusBarUtil {
     /**
      * 设置文字颜色
      */
-    public static void setStatusBarFontIconDark(Activity activity, @ViewType int type) {
+    public static void setStatusBarFontIconDark(Activity activity) {
         setCommonUI(activity);
     }
 
@@ -143,7 +126,7 @@ public class StatusBarUtil {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
                 decorView.setSystemUiVisibility(uiOptions);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
